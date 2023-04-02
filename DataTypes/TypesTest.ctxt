@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=TypesTest
+comment0.text=\r\n\ Testing\ out\ data\ types\r\n\r\n\ Emmett\ Petty\r\n\ 23/03/2023\r\n
+comment1.params=
+comment1.target=TypesTest()
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ TypesTest\r\n
+comment2.params=y
+comment2.target=int\ sampleMethod(int)
+comment2.text=\r\n\ An\ example\ of\ a\ method\ -\ replace\ this\ comment\ with\ your\ own\r\n\r\n\ @param\ \ y\ \ a\ sample\ parameter\ for\ a\ method\r\n\ @return\ \ \ \ the\ sum\ of\ x\ and\ y\r\n
+numComments=3
