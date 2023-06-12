@@ -18,8 +18,6 @@ public class ConnWaysGamerLife
         String[] nums=keyboard.split(","); //Split doesnt work )=
         int N1 = Integer.parseInt(nums[0]);
         int N2 = Integer.parseInt(nums[1]);
-        if (Grid[N1][N2] == 4) Grid[N1][N2] = 3;
-        else Grid[N1][N2] = 2;
         System.out.print('\u000C');
         
     }
