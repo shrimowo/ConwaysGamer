@@ -19,6 +19,6 @@ public class ConnWaysGamerLife
         int N1 = Integer.parseInt(nums[0]);
         int N2 = Integer.parseInt(nums[1]);
         System.out.print('\u000C');
-        
+        //Type 1 if you are SILLY
     }
 }
