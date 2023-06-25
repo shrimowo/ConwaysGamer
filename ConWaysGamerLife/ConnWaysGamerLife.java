@@ -2,7 +2,7 @@ import java.util.Scanner; //Keyboard input
 public class ConnWaysGamerLife
 {
     // instance variables - replace the example below with your own
-    int GRIDSIZE = 25;// wanna make this a constant
+    final int GRIDSIZE = 25;
     Scanner keyboard;
     boolean StartScreen = true;
     boolean GridGenerating = true;
@@ -38,7 +38,7 @@ public class ConnWaysGamerLife
                 System.out.println("");
             }
             System.out.println("Give me a 2 positions between 1 & 25 seperated by a comma"); //Instructions
-            System.out.println("If you are done type 'done'"); //Instructions
+            //System.out.println("If you are done type 'done'"); //Instructions
             keyboard = new Scanner(System.in);
             String doneCheck = keyboard.nextLine().toLowerCase();
             if (doneCheck.equals("done")) GridGenerating = false;
