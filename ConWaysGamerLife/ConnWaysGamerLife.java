@@ -56,9 +56,59 @@ public class ConnWaysGamerLife
         keyboard = new Scanner(System.in);
         int generations = Integer.parseInt(keyboard.nextLine());
         for (int g=0;g<generations;g++) {
+            int livecells = 0;
             for (int x=0;x<GRIDSIZE;x++) {
                 for (int y=0;y<GRIDSIZE;y++) {
                     if (x==1 && y==1) {
+                        if (Grid[x][y+1] == 2) livecells++; //Bottom
+                        if (Grid[x+1][y+1] == 2) livecells++; //Bottom Right
+                        if (Grid[x+1][y] == 2) livecells++; //Right
+                    } else if (x==GRIDSIZE && y==GRIDSIZE) {
+                        if (Grid[x][y-1] == 2) livecells++; //Top
+                        if (Grid[x-1][y-1] == 2) livecells++; //Top Left
+                        if (Grid[x-1][y] == 2) livecells++; //Left
+                    } else if (x==GRIDSIZE && y==GRIDSIZE) { // fix
+                        if (Grid[x][y-1] == 2) livecells++; //Top
+                        if (Grid[x-1][y-1] == 2) livecells++; //Top Left
+                        if (Grid[x-1][y] == 2) livecells++; //Left
+                    } else if (x==GRIDSIZE && y==GRIDSIZE) { //fix
+                        if (Grid[x][y-1] == 2) livecells++; //Top
+                        if (Grid[x-1][y-1] == 2) livecells++; //Top Left
+                        if (Grid[x-1][y] == 2) livecells++; //Left                        
+                    } else if (x==1) {
+                        if (Grid[x][y+1] == 2) livecells++; //Bottom
+                        if (Grid[x][y-1] == 2) livecells++; //Top
+                        if (Grid[x+1][y+1] == 2) livecells++; //Bottom Right
+                        if (Grid[x+1][y] == 2) livecells++; //Right
+                        if (Grid[x+1][y-1] == 2) livecells++; //Top Right
+                    } else if (y==1) {
+                        if (Grid[x-1][y+1] == 2) livecells++; //Bottom Left
+                        if (Grid[x-1][y] == 2) livecells++; //Left
+                        if (Grid[x][y+1] == 2) livecells++; //Bottom
+                        if (Grid[x+1][y+1] == 2) livecells++; //Bottom Right
+                        if (Grid[x+1][y] == 2) livecells++; //Right 
+                    } else if (x==GRIDSIZE) {
+                        if (Grid[x][y-1] == 2) livecells++; //Top
+                        if (Grid[x][y+1] == 2) livecells++; //Bottom
+                        if (Grid[x-1][y-1] == 2) livecells++; //Top Left
+                        if (Grid[x-1][y] == 2) livecells++; //Left
+                        if (Grid[x-1][y+1] == 2) livecells++; //Bottom Left
+                    } else if (y==GRIDSIZE) {
+                        if (Grid[x-1][y+1] == 2) livecells++; //Top Right
+                        if (Grid[x-1][y] == 2) livecells++; //Right
+                        if (Grid[x][y+1] == 2) livecells++; //Top
+                        if (Grid[x+1][y+1] == 2) livecells++; //Top Left
+                        if (Grid[x+1][y] == 2) livecells++; //Left
+                    } else {
+                        if (Grid[x-1][y+1] == 2) livecells++; //Bottom Left
+                        if (Grid[x-1][y] == 2) livecells++; //Left
+                        if (Grid[x-1][y-1] == 2) livecells++; //Top Left
+                        if (Grid[x][y+1] == 2) livecells++; //Bottom
+                        //if (Grid[x][y] == 2) livecells++; This is the cell being checked
+                        if (Grid[x][y-1] == 2) livecells++; //Top
+                        if (Grid[x+1][y+1] == 2) livecells++; //Bottom Right
+                        if (Grid[x+1][y] == 2) livecells++; //Right
+                        if (Grid[x+1][y-1] == 2) livecells++; //Top Right
                     }
                     if (Grid[x][y] == 1) System.out.print("o ");
                     else if (Grid[x][y] == 2) System.out.print("x ");
@@ -66,6 +116,7 @@ public class ConnWaysGamerLife
                 System.out.println("");
             }
         }
+
         
     }
 }
