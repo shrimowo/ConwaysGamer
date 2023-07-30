@@ -54,67 +54,79 @@ public class ConnWaysGamerLife
         System.out.print('\u000C');
         System.out.println("How many generations do you want the game to run for?"); //Instructions
         keyboard = new Scanner(System.in);
-        int generations = Integer.parseInt(keyboard.nextLine());
-        for (int g=0;g<generations;g++) {
-            int livecells = 0;
+        final int GENERATIONS = Integer.parseInt(keyboard.nextLine());
+        int[][][] GridGen = new int[GENERATIONS+1][GRIDSIZE][GRIDSIZE]; 
+        int livecells = 0;
+        for (int x=0;x<GRIDSIZE;x++) {
+            for (int y=0;y<GRIDSIZE;y++) {
+                if (Grid[x][y] == 1) GridGen[0][x][y] = 1 ;
+                else if (Grid[x][y] == 2) GridGen[0][x][y] = 2;
+            }
+        }
+        for (int g=0;g<GENERATIONS;g++) {
+            System.out.println("Generation "+(g));
             for (int x=0;x<GRIDSIZE;x++) {
                 for (int y=0;y<GRIDSIZE;y++) {
+                    livecells = 0;
                     if (x==1 && y==1) {
-                        if (Grid[x][y+1] == 2) livecells++; //Bottom
-                        if (Grid[x+1][y+1] == 2) livecells++; //Bottom Right
-                        if (Grid[x+1][y] == 2) livecells++; //Right
+                        if (GridGen[g][x][y+1] == 2) livecells++; //Bottom
+                        if (GridGen[g][x+1][y+1] == 2) livecells++; //Bottom Right
+                        if (GridGen[g][x+1][y] == 2) livecells++; //Right
                     } else if (x==GRIDSIZE && y==GRIDSIZE) {
-                        if (Grid[x][y-1] == 2) livecells++; //Top
-                        if (Grid[x-1][y-1] == 2) livecells++; //Top Left
-                        if (Grid[x-1][y] == 2) livecells++; //Left
-                    } else if (x==GRIDSIZE && y==GRIDSIZE) { // fix
-                        if (Grid[x][y-1] == 2) livecells++; //Top
-                        if (Grid[x-1][y-1] == 2) livecells++; //Top Left
-                        if (Grid[x-1][y] == 2) livecells++; //Left
-                    } else if (x==GRIDSIZE && y==GRIDSIZE) { //fix
-                        if (Grid[x][y-1] == 2) livecells++; //Top
-                        if (Grid[x-1][y-1] == 2) livecells++; //Top Left
-                        if (Grid[x-1][y] == 2) livecells++; //Left                        
+                        if (GridGen[g][x][y-1] == 2) livecells++; //Top
+                        if (GridGen[g][x-1][y-1] == 2) livecells++; //Top Left
+                        if (GridGen[g][x-1][y] == 2) livecells++; //Left
+                    } else if (x==GRIDSIZE && y==1) { // fix
+                        if (GridGen[g][x][y+1] == 2) livecells++; //Bottom
+                        if (GridGen[g][x-1][y+1] == 2) livecells++; //Bottom Left
+                        if (GridGen[g][x-1][y] == 2) livecells++; //Left
+                    } else if (x==1 && y==GRIDSIZE) { //fix
+                        if (GridGen[g][x][y-1] == 2) livecells++; //Top
+                        if (GridGen[g][x+1][y-1] == 2) livecells++; //Top Right
+                        if (GridGen[g][x+1][y] == 2) livecells++; //Right                        
                     } else if (x==1) {
-                        if (Grid[x][y+1] == 2) livecells++; //Bottom
-                        if (Grid[x][y-1] == 2) livecells++; //Top
-                        if (Grid[x+1][y+1] == 2) livecells++; //Bottom Right
-                        if (Grid[x+1][y] == 2) livecells++; //Right
-                        if (Grid[x+1][y-1] == 2) livecells++; //Top Right
+                        if (GridGen[g][x][y+1] == 2) livecells++; //Bottom
+                        if (GridGen[g][x][y-1] == 2) livecells++; //Top
+                        if (GridGen[g][x+1][y+1] == 2) livecells++; //Bottom Right
+                        if (GridGen[g][x+1][y] == 2) livecells++; //Right
+                        if (GridGen[g][x+1][y-1] == 2) livecells++; //Top Right
                     } else if (y==1) {
-                        if (Grid[x-1][y+1] == 2) livecells++; //Bottom Left
-                        if (Grid[x-1][y] == 2) livecells++; //Left
-                        if (Grid[x][y+1] == 2) livecells++; //Bottom
-                        if (Grid[x+1][y+1] == 2) livecells++; //Bottom Right
-                        if (Grid[x+1][y] == 2) livecells++; //Right 
+                        if (GridGen[g][x-1][y+1] == 2) livecells++; //Bottom Left
+                        if (GridGen[g][x-1][y] == 2) livecells++; //Left
+                        if (GridGen[g][x][y+1] == 2) livecells++; //Bottom
+                        if (GridGen[g][x+1][y+1] == 2) livecells++; //Bottom Right
+                        if (GridGen[g][x+1][y] == 2) livecells++; //Right 
                     } else if (x==GRIDSIZE) {
-                        if (Grid[x][y-1] == 2) livecells++; //Top
-                        if (Grid[x][y+1] == 2) livecells++; //Bottom
-                        if (Grid[x-1][y-1] == 2) livecells++; //Top Left
-                        if (Grid[x-1][y] == 2) livecells++; //Left
-                        if (Grid[x-1][y+1] == 2) livecells++; //Bottom Left
+                        if (GridGen[g][x][y-1] == 2) livecells++; //Top
+                        if (GridGen[g][x][y+1] == 2) livecells++; //Bottom
+                        if (GridGen[g][x-1][y-1] == 2) livecells++; //Top Left
+                        if (GridGen[g][x-1][y] == 2) livecells++; //Left
+                        if (GridGen[g][x-1][y+1] == 2) livecells++; //Bottom Left
                     } else if (y==GRIDSIZE) {
-                        if (Grid[x-1][y+1] == 2) livecells++; //Top Right
-                        if (Grid[x-1][y] == 2) livecells++; //Right
-                        if (Grid[x][y+1] == 2) livecells++; //Top
-                        if (Grid[x+1][y+1] == 2) livecells++; //Top Left
-                        if (Grid[x+1][y] == 2) livecells++; //Left
+                        if (GridGen[g][x-1][y+1] == 2) livecells++; //Top Right
+                        if (GridGen[g][x-1][y] == 2) livecells++; //Right
+                        if (GridGen[g][x][y+1] == 2) livecells++; //Top
+                        if (GridGen[g][x+1][y+1] == 2) livecells++; //Top Left
+                        if (GridGen[g][x+1][y] == 2) livecells++; //Left
                     } else {
-                        if (Grid[x-1][y+1] == 2) livecells++; //Bottom Left
-                        if (Grid[x-1][y] == 2) livecells++; //Left
-                        if (Grid[x-1][y-1] == 2) livecells++; //Top Left
-                        if (Grid[x][y+1] == 2) livecells++; //Bottom
-                        //if (Grid[x][y] == 2) livecells++; This is the cell being checked
-                        if (Grid[x][y-1] == 2) livecells++; //Top
-                        if (Grid[x+1][y+1] == 2) livecells++; //Bottom Right
-                        if (Grid[x+1][y] == 2) livecells++; //Right
-                        if (Grid[x+1][y-1] == 2) livecells++; //Top Right
+                        if (GridGen[g][x-1][y+1] == 2) livecells++; //Bottom Left
+                        if (GridGen[g][x-1][y] == 2) livecells++; //Left
+                        if (GridGen[g][x-1][y-1] == 2) livecells++; //Top Left
+                        if (GridGen[g][x][y+1] == 2) livecells++; //Bottom
+                        //if (GridGen[g][x][y] == 2) livecells++; This is the cell being checked
+                        if (GridGen[g][x][y-1] == 2) livecells++; //Top
+                        if (GridGen[g][x+1][y+1] == 2) livecells++; //Bottom Right
+                        if (GridGen[g][x+1][y] == 2) livecells++; //Right
+                        if (GridGen[g][x+1][y-1] == 2) livecells++; //Top Right
                     }
-                    if (Grid[x][y] == 1) System.out.print("o ");
-                    else if (Grid[x][y] == 2) System.out.print("x ");
+                    if (GridGen[g][x][y] == 1) System.out.print("o ");
+                    else if (GridGen[g][x][y] == 2) System.out.print("x ");
                 }
                 System.out.println("");
             }
+            System.out.println("");
+            System.out.println("");
+            System.out.println("");
         }
 
         
