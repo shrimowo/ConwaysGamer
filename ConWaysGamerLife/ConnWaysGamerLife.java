@@ -63,12 +63,12 @@ public class ConnWaysGamerLife
                 else if (Grid[x][y] == 2) GridGen[0][x][y] = 2;
             }
         }
-        for (int g=0;g<GENERATIONS;g++) {
+        for (int g=1;g<GENERATIONS;g++) {
             System.out.println("Generation "+(g));
             for (int x=0;x<GRIDSIZE;x++) {
                 for (int y=0;y<GRIDSIZE;y++) {
                     livecells = 0;
-                    if (x==1 && y==1) {
+                    if (x==1 && y==0) {
                         if (GridGen[g][x][y+1] == 2) livecells++; //Bottom
                         if (GridGen[g][x+1][y+1] == 2) livecells++; //Bottom Right
                         if (GridGen[g][x+1][y] == 2) livecells++; //Right
@@ -76,21 +76,21 @@ public class ConnWaysGamerLife
                         if (GridGen[g][x][y-1] == 2) livecells++; //Top
                         if (GridGen[g][x-1][y-1] == 2) livecells++; //Top Left
                         if (GridGen[g][x-1][y] == 2) livecells++; //Left
-                    } else if (x==GRIDSIZE && y==1) { // fix
+                    } else if (x==GRIDSIZE && y==0) { 
                         if (GridGen[g][x][y+1] == 2) livecells++; //Bottom
                         if (GridGen[g][x-1][y+1] == 2) livecells++; //Bottom Left
                         if (GridGen[g][x-1][y] == 2) livecells++; //Left
-                    } else if (x==1 && y==GRIDSIZE) { //fix
+                    } else if (x==0 && y==GRIDSIZE) { 
                         if (GridGen[g][x][y-1] == 2) livecells++; //Top
                         if (GridGen[g][x+1][y-1] == 2) livecells++; //Top Right
                         if (GridGen[g][x+1][y] == 2) livecells++; //Right                        
-                    } else if (x==1) {
+                    } else if (x==0) {
                         if (GridGen[g][x][y+1] == 2) livecells++; //Bottom
                         if (GridGen[g][x][y-1] == 2) livecells++; //Top
                         if (GridGen[g][x+1][y+1] == 2) livecells++; //Bottom Right
                         if (GridGen[g][x+1][y] == 2) livecells++; //Right
                         if (GridGen[g][x+1][y-1] == 2) livecells++; //Top Right
-                    } else if (y==1) {
+                    } else if (y==0) {
                         if (GridGen[g][x-1][y+1] == 2) livecells++; //Bottom Left
                         if (GridGen[g][x-1][y] == 2) livecells++; //Left
                         if (GridGen[g][x][y+1] == 2) livecells++; //Bottom
@@ -119,6 +119,9 @@ public class ConnWaysGamerLife
                         if (GridGen[g][x+1][y] == 2) livecells++; //Right
                         if (GridGen[g][x+1][y-1] == 2) livecells++; //Top Right
                     }
+                    if (GridGen[g][x][y] == 2 && livecells < 2) GridGen[g+1][x][y] = 1;
+                    else if (GridGen[g][x][y] == 2 && livecells > 3) GridGen[g+1][x][y] = 1;
+                    else if (GridGen[g][x][y] == 1 && livecells == 3) GridGen[g+1][x][y] = 2;
                     if (GridGen[g][x][y] == 1) System.out.print("o ");
                     else if (GridGen[g][x][y] == 2) System.out.print("x ");
                 }
