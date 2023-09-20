@@ -2,7 +2,7 @@ import java.util.Scanner; //Keyboard input
 public class ConnWaysGamerLife
 {
     // instance variables - replace the example below with your own
-    final int GRIDSIZE = 26;
+    final int GRIDSIZE = 26; //Sets grid as 25, need 1 extra to keep user inputes consistant
     Scanner keyboard;
     boolean StartScreen = true;
     boolean GridGenerating = true;
@@ -16,12 +16,13 @@ public class ConnWaysGamerLife
         }
         System.out.println("Welcome To Conways Game Of Life"); //Instructions
         while (StartScreen) {
+            System.out.println("");
             System.out.println("Type 'guide' To Be Given Instructions");
             System.out.println("Type 'start' To Begin The Game");
             keyboard = new Scanner(System.in);
             String answer=keyboard.nextLine();
             answer = answer.toLowerCase();
-            System.out.println(answer);
+            System.out.print('\u000C');
             if (answer.equals("start")) StartScreen = false;
             else if (answer.equals("guide")) {
                 System.out.println("Conways Game Of Life Rules:");
@@ -30,11 +31,11 @@ public class ConnWaysGamerLife
                 System.out.println("A live cell with more than three live neighbors dies.");
                 System.out.println("A dead cell will be brought back to live if it has exactly three live neighbors.");
                 System.out.println("o = dead cell   x = live cell");
-            }
+            } // Invalid input checker
             else System.out.println("Sorry your input was invalid");
         }
         System.out.print('\u000C');
-        while (GridGenerating) { //Generates the grid
+        while (GridGenerating) { //Generates (prints) the grid
             for (int x=0;x<GRIDSIZE;x++) {
                 for (int y=0;y<GRIDSIZE;y++) {
                     if (Grid[x][y] == 1) System.out.print("o ");
@@ -58,7 +59,8 @@ public class ConnWaysGamerLife
         }
         System.out.print('\u000C');
         System.out.println("How many generations do you want the game to run for?"); //Instructions
-        // incorect check
+        // add incorect check
+        //reads input
         keyboard = new Scanner(System.in);
         final int GENERATIONS = Integer.parseInt(keyboard.nextLine());
         int[][][] GridGen = new int[GENERATIONS+1][GRIDSIZE][GRIDSIZE]; 
@@ -70,7 +72,7 @@ public class ConnWaysGamerLife
             }
         }
         for (int g=0;g<GENERATIONS;g++) {
-            System.out.println("Generation "+(g+1));
+            System.out.println("Generation "+(g+1)); //Displays what generation we are on
             for (int x=1;x<GRIDSIZE;x++) {
                 for (int y=1;y<GRIDSIZE;y++) {
                     livecells = 0;
@@ -139,12 +141,11 @@ public class ConnWaysGamerLife
                 }
                 System.out.println("");
             }
+            //This adds distance between the grids
             System.out.println("");
             System.out.println("");
             System.out.println("");
         }
-
-        
     }
 }
 
