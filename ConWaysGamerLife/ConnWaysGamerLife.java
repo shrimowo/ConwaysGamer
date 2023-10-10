@@ -2,12 +2,27 @@ import java.util.Scanner; //Keyboard input
 public class ConnWaysGamerLife
 {
     // instance variables - replace the example below with your own
-    final int GRIDSIZE = 26; //Sets grid as 25, need 1 extra to keep user inputes consistant
+    final int GRIDSIZE = 25; //Sets grid as 25, need 1 extra to keep user inputes consistant
     Scanner keyboard;
     boolean StartScreen = true;
     boolean GridGenerating = true;
-    public boolean validinput (String nums) {
-    
+    public boolean validinput (String nums) { // checks for incorrect inputs
+        for (int x=0; x<nums.length(); x++){
+            if(nums.charAt(x) <= '0') {
+                return false;
+            }
+            if(nums.charAt(x) >= '9') {
+                return false;
+            }
+            int num = Integer.parseInt(nums);
+            if (num>GRIDSIZE) {
+                return false;
+            }
+            if (num<=0) {
+                return false;
+            }
+        }
+        return true;
     }
     public ConnWaysGamerLife()
     {
@@ -53,13 +68,15 @@ public class ConnWaysGamerLife
             if (doneCheck.equals("done")) GridGenerating = false;
                 else {
                 String[] nums=doneCheck.split(",");
-                //add check here to prevent crashes
                 if (nums.length==2) {
-                    System.out.println(nums.length);
+                    if (validinput(nums[0]) && validinput(nums[1])) {
                     int N1 = Integer.parseInt(nums[0])-1;
                     int N2 = Integer.parseInt(nums[1])-1;
                     Grid[N1][N2] = 2;
-                    System.out.print('\u000C');
+                    //System.out.print('\u000C');
+                } else {
+                    System.out.println("Sorry you have made an invalid input, Make sure you give me 2 positions between 1 & 25 seperated by a comma");
+                }
                 } else {
                     System.out.println("Sorry you have made an invalid input, Make sure you give me 2 positions between 1 & 25 seperated by a comma");
                 }
